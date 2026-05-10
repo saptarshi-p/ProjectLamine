@@ -1,4 +1,4 @@
-import streamlit as st
+pythonimport streamlit as st
 import pandas as pd
 
 # Page config
@@ -12,11 +12,7 @@ st.markdown("---")
 # Load data
 @st.cache_data
 def load_data():
-    cols = ['short_name', 'age', 'nationality_name', 'league_name',
-            'club_name', 'overall', 'potential', 'pace', 'shooting',
-            'passing', 'dribbling', 'defending', 'physic']
-    df = pd.read_csv("male_players (legacy).csv", usecols=cols, low_memory=False)
-    df = df[df['fifa_version'] == 23] if 'fifa_version' in df.columns else df
+    df = pd.read_csv("players_data.csv", low_memory=False)
     stat_cols = ['pace', 'shooting', 'passing', 'dribbling', 'defending', 'physic']
     for col in stat_cols:
         df[col] = df[col].fillna(df[col].median())
